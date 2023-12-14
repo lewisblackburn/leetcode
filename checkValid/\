@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+
+class Solution {
+public:
+  bool checkValid(std::vector<std::vector<int>> &matrix) {
+    int n = matrix.size();    // number of rows
+    int m = matrix[0].size(); // number of columns
+
+    int rowSum = 0;
+
+    for (int i = 0; i < n; i++) {
+      int sum = 0;
+      for (int j = 0; j < m; j++) {
+        sum += matrix[i][j];
+      }
+      if (sum == 6) {
+        rowSum = sum;
+      }
+    }
+
+    std::cout << rowSum << std::endl;
+
+    return false;
+  }
+};
+
+int main() {
+  Solution solution;
+  std::vector<std::vector<int>> matrix = {{1, 2, 3}, {3, 1, 2}, {2, 3, 2}};
+  solution.checkValid(matrix);
+  return 0;
+}
