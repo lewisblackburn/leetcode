@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -6,26 +7,22 @@ using namespace std;
 class Solution {
 public:
   int findContentChildren(vector<int> &g, vector<int> &s) {
-    for (int i = 0; i < g.size(); i++) {
-      for (int j = 0; j < s.size(); j++) {
-        if (s[j] >= g[i]) {
-          if (s[j] > 1) {
-            s[j] -= 1;
-          } else {
-            s.erase(s.begin() + j);
-          }
-          break;
-        }
+    sort(g.begin(), g.end());
+    sort(s.begin(), s.end());
+    int i = 0;
+    for (int j = 0; i < g.size() && j < s.size(); j++) {
+      if (s[j] >= g[i]) {
+        i++;
       }
     }
-    return s.size();
+    return i;
   }
 };
 
 int main() {
   Solution solution;
-  vector<int> g = {1, 2, 3};
-  vector<int> s = {1, 1};
+  vector<int> g = {10, 9, 8, 7};
+  vector<int> s = {5, 6, 7, 8};
   cout << solution.findContentChildren(g, s) << endl;
   return 0;
 }
